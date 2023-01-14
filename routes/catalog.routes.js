@@ -45,6 +45,18 @@ router.get(
     }
 })
 
+router.get(
+    '/getGoodsFromSearch',
+    async (req, res) => {
+    try {
+        
+        const goodsArr = await Goods.find({"name": {$regex: req.query.search, $options: "i"}}).lean()
+
+        res.status(200).json({activeCategoryGoods: goodsArr})
+    } catch (e) {
+        res.status(500).json({message: 'Что-то пошло не так'})
+    }
+})
 
 router.get(
     '/getProduct',
@@ -112,7 +124,6 @@ router.post(
             imgName: req.file.filename,
             quantity: Number(quantity),
             subCategoryId: Types.ObjectId(subCategory)
-            
         }
 
         const product = new Goods(newProduct)
