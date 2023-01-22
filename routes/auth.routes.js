@@ -41,10 +41,10 @@ router.post(
 
         await user.save()
 
-        res.status(201).json({message: 'Пользователь создан!'})
+        return res.status(201).json({message: 'Регистрация прошла успешно!'})
 
     } catch (e) {
-        res.status(500).json({message: 'Что-то пошло не так'})
+        return res.status(500).json({message: 'Что-то пошло не так'})
     }
 })
 
@@ -84,7 +84,7 @@ router.post(
             {expiresIn: '1h'}
         )
         
-        res.status(200).json({token, userId: user.id, userName: user.name, userPhone: user.phone, message: `Добро пожаловать, ${user.name}}`})
+        res.status(200).json({token, userId: user.id, userName: user.name, userPhone: user.phone, message: `Добро пожаловать, ${user.name}!`})
 
     } catch (e) {
         res.status(500).json({message: 'Что-то пошло не так'})
