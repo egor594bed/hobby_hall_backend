@@ -11,7 +11,6 @@ router.post(
 
         const user = await User.findOne({_id: userId})
         user.password = undefined
-        console.log(basketArr)
 
         //deliveryId и paymentId заменить на название, когда добавлю их в базу???
         const newOrder = {
@@ -23,12 +22,28 @@ router.post(
             paymentId: paymentId,
             state: state
         }
-        console.log(newOrder)
         const order = new Order(newOrder)
         await order.save()
 
 
         res.status(201).json({message: `Заказ добавлен`})
+    } catch (e) {
+        res.status(500).json({message: 'Что-то пошло не так'})
+    }
+})
+
+router.post(
+    '/changeOrder',
+    async (req, res) => {
+    try {
+        const {orderId, state, orderComment} = req.body
+
+        await Order.findOneAndUpdate({_id: orderId}, {
+            state: state,
+            comment: orderComment
+        })
+
+        res.status(201).json({message: `Заказ обновлен`})
     } catch (e) {
         res.status(500).json({message: 'Что-то пошло не так'})
     }
