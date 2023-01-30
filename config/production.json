@@ -1,0 +1,5 @@
+{
+    "port": 5000,
+    "jwtSecret": "hobby43",
+    "mongoUri": "mongodb://localhost:27017/hobby-hall"
+}
