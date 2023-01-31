@@ -1,5 +1,5 @@
 {
     "port": 5000,
     "jwtSecret": "hobby43",
-    "mongoUri": "mongodb+srv://egor594:egor594@cluster0.ofrgh2i.mongodb.net/?retryWrites=true&w=majority"
+    "mongoUri": "mongodb+srv://egor594:egor594@cluster0.ofrgh2i.mongodb.net/hobby-hall?retryWrites=true&w=majority"
 }
